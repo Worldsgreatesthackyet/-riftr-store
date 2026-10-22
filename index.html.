@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101010">
+  <title>RIFTR | Break the Ordinary</title>
+  <meta name="description" content="Discover RIFTR streetwear, gaming, anime-inspired and graphic T-shirts. Wear Your Energy.">
+  <style>
+    :root {
+      --bg: #101010;
+      --panel: #191919;
+      --text: #f5f2ec;
+      --muted: #aaa6a0;
+      --red: #e83c4b;
+      --blue: #50b9f5;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, select, input { font: inherit; }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 6%;
+      border-bottom: 1px solid #303030;
+    }
+    .logo { font-size: 27px; font-weight: 900; letter-spacing: 4px; }
+    .logo span { color: var(--red); }
+    nav { display: flex; gap: 17px; font-size: 13px; }
+    .cart-link { color: var(--blue); font-weight: bold; }
+    .hero {
+      padding: 76px 7% 70px;
+      background: radial-gradient(ellipse at 85% 20%, #29202b, transparent 48%);
+    }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      letter-spacing: 3px;
+      font-weight: bold;
+    }
+    h1 {
+      max-width: 680px;
+      font-size: clamp(44px, 10vw, 86px);
+      line-height: .98;
+      margin: 20px 0;
+      letter-spacing: -3px;
+    }
+    h1 span { color: var(--red); }
+    .hero p { max-width: 430px; color: var(--muted); line-height: 1.7; }
+    .cta {
+      display: inline-block;
+      background: var(--red);
+      padding: 14px 21px;
+      margin-top: 16px;
+      border: 0;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .section { padding: 35px 6%; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    h2 { font-size: 26px; }
+    .muted { color: var(--muted); font-size: 13px; }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0 24px; }
+    .filter {
+      background: transparent;
+      border: 1px solid #444;
+      color: var(--text);
+      padding: 9px 13px;
+      cursor: pointer;
+    }
+    .filter.active { background: var(--red); border-color: var(--red); }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+    .product { background: var(--panel); padding: 10px; min-width: 0; }
+    .mockup {
+      min-height: 160px;
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: linear-gradient(140deg, #272727, #111);
+      position: relative;
+    }
+    .shirt {
+      width: 65%;
+      max-width: 170px;
+      aspect-ratio: 1 / 1.08;
+      background: #242424;
+      clip-path: polygon(28% 5%, 42% 0, 58% 0, 72% 5%, 100% 23%, 85% 43%, 72% 34%, 75% 100%, 25% 100%, 28% 34%, 15% 43%, 0 23%);
+      display: grid;
+      place-items: center;
+      filter: drop-shadow(0 8px 8px #000);
+    }
+    .shirt-art {
+      color: var(--red);
+      font-weight: 900;
+      text-align: center;
+      font-size: clamp(13px, 3vw, 23px);
+      letter-spacing: -1px;
+      transform: rotate(-5deg);
+    }
+    .product h3 { font-size: 14px; margin: 13px 0 7px; }
+    .price { color: var(--blue); font-weight: bold; }
+    .product select {
+      width: 100%;
+      margin: 10px 0;
+      background: #101010;
+      color: white;
+      border: 1px solid #444;
+      padding: 10px;
+    }
+    .add {
+      width: 100%;
+      background: transparent;
+      color: white;
+      border: 1px solid var(--red);
+      padding: 11px 5px;
+      cursor: pointer;
+    }
+    .add:hover { background: var(--red); }
+    .info {
+      margin: 20px 6%;
+      padding: 20px;
+      background: var(--panel);
+      line-height: 1.7;
+    }
+    .info h2 { margin-top: 0; }
+    .info p { color: var(--muted); font-size: 14px; }
+    .checkout { padding: 30px 6%; }
+    .checkout input {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      padding: 13px;
+      margin: 10px 0;
+      background: #191919;
+      border: 1px solid #444;
+      color: white;
+    }
+    .checkout button:disabled { opacity: .4; cursor: not-allowed; }
+    #cart-items { padding-left: 20px; line-height: 1.8; }
+    footer {
+      border-top: 1px solid #303030;
+      padding: 28px 6%;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    @media (min-width: 700px) {
+      .products { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+      .mockup { min-height: 240px; }
+      .hero { padding-top: 105px; padding-bottom: 100px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="#">RIFTR<span>.</span></a>
+    <nav>
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <a class="cart-link" href="#checkout">Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">WEAR YOUR ENERGY</div>
+      <h1>BREAK THE<br><span>ORDINARY.</span></h1>
+      <p>Streetwear for people who refuse to blend in. Discover graphic tees inspired by gaming, anime culture, humour and the streets.</p>
+      <a class="cta" href="#shop">EXPLORE THE COLLECTION ↘</a>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="section-head">
+        <h2>THE COLLECTION</h2>
+        <span class="muted">DESIGNED TO STAND OUT</span>
+      </div>
+      <div class="filters" id="filters">
+        <button class="filter active" data-filter="All">All</button>
+        <button class="filter" data-filter="Streetwear">Streetwear</button>
+        <button class="filter" data-filter="Anime">Anime-inspired</button>
+        <button class="filter" data-filter="Gaming">Gaming</button>
+        <button class="filter" data-filter="Humour">Humour</button>
+      </div>
+      <div class="products" id="products"></div>
+    </section>
+
+    <section class="info" id="about">
+      <h2>MORE THAN A T-SHIRT.</h2>
+      <p>RIFTR is about self-expression, bold graphics and finding your own style. Every piece should feel like you.</p>
+      <p>We are preparing our first collection. Product images, availability and delivery details will be confirmed before orders are accepted.</p>
+    </section>
+
+    <section class="checkout" id="checkout">
+      <h2>YOUR CART</h2>
+      <p class="muted">Review your selection before contacting us to confirm your order.</p>
+      <ul id="cart-items"><li>Your cart is empty.</li></ul>
+      <h3>Total: <span id="cart-total">₦0</span></h3>
+      <input id="customer-name" placeholder="Your full name" autocomplete="name">
+      <input id="customer-phone" placeholder="Your phone number" inputmode="tel" autocomplete="tel">
+      <input id="customer-address" placeholder="Delivery area and address" autocomplete="street-address">
+      <button class="cta" id="checkout-btn" type="button" disabled>CONTINUE ON WHATSAPP</button>
+      <p class="muted">Checkout is a request only. We will confirm stock, delivery charges and payment details with you.</p>
+    </section>
+  </main>
+
+  <footer>
+    <strong>RIFTR.</strong> — Break the Ordinary.<br>
+    © <span id="year"></span> RIFTR. All rights reserved.<br>
+    Sample storefront. Replace mockups and confirm product details before launch.
+  </footer>
+
+  <script>
+    const WHATSAPP_NUMBER = ""; // Add your number, e.g. 2348012345678
+
+    const products = [
+      {id:1,name:"After Dark",category:"Streetwear",art:"AFTER<br>DARK",color:"#292929"},
+      {id:2,name:"Limit Breaker",category:"Anime",art:"LIMIT<br>BREAK",color:"#222b3d"},
+      {id:3,name:"Final Boss",category:"Gaming",art:"FINAL<br>BOSS",color:"#26352d"},
+      {id:4,name:"Zero Chill",category:"Humour",art:"ZERO<br>CHILL",color:"#3b2727"},
+      {id:5,name:"Void Walker",category:"Anime",art:"VOID<br>WALKER",color:"#2b2438"},
+      {id:6,name:"No Respawn",category:"Gaming",art:"NO<br>RESPAWN",color:"#292929"}
+    ];
+
+    const cart = [];
+    const money = amount => "₦" + amount.toLocaleString("en-NG");
+    const price = 12000;
+    const productGrid = document.getElementById("products");
+
+    function renderProducts(filter = "All") {
+      productGrid.innerHTML = "";
+      products.filter(p => filter === "All" || p.category === filter).forEach(p => {
+        const card = document.createElement("article");
+        card.className = "product";
+        card.innerHTML = `
+          <div class="mockup">
+            <div class="shirt" style="background:${p.color}">
+              <div class="shirt-art">${p.art}</div>
+            </div>
+          </div>
+          <h3>${p.name}</h3>
+          <div class="muted">${p.category} · Sample design</div>
+          <p class="price">${money(price)}</p>
+          <label class="muted" for="size-${p.id}">Choose size</label>
+          <select id="size-${p.id}">
+            <option value="S">Small (S)</option>
+            <option value="M">Medium (M)</option>
+            <option value="L">Large (L)</option>
+            <option value="XL">Extra Large (XL)</option>
+            <option value="XXL">2XL</option>
+          </select>
+          <button class="add" type="button" data-add="${p.id}">ADD TO CART +</button>`;
+        productGrid.appendChild(card);
+      });
+    }
+
+    function renderCart() {
+      document.getElementById("cart-count").textContent = cart.length;
+      document.getElementById("cart-total").textContent = money(cart.length * price);
+      const list = document.getElementById("cart-items");
+      list.innerHTML = "";
+      if (!cart.length) {
+        list.innerHTML = "<li>Your cart is empty.</li>";
+      } else {
+        cart.forEach((item, index) => {
+          const li = document.createElement("li");
+          li.textContent = `${item.name} — size ${item.size} — ${money(price)} `;
+          const remove = document.createElement("button");
+          remove.type = "button";
+          remove.textContent = "Remove";
+          remove.addEventListener("click", () => {
+            cart.splice(index, 1);
+            renderCart();
+          });
+          li.appendChild(remove);
+          list.appendChild(li);
+        });
+      }
+      document.getElementById("checkout-btn").disabled = cart.length === 0;
+    }
+
+    document.getElementById("filters").addEventListener("click", event => {
+      const button = event.target.closest("button[data-filter]");
+      if (!button) return;
+      document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+      button.classList.add("active");
+      renderProducts(button.dataset.filter);
+    });
+
+    productGrid.addEventListener("click", event => {
+      const button = event.target.closest("button[data-add]");
+      if (!button) return;
+      const product = products.find(p => p.id === Number(button.dataset.add));
+      const size = document.getElementById(`size-${product.id}`).value;
+      cart.push({name: product.name, size});
+      renderCart();
+      button.textContent = "ADDED ✓";
+      setTimeout(() => button.textContent = "ADD TO CART +", 1000);
+    });
+
+    document.getElementById("checkout-btn").addEventListener("click", () => {
+      if (!cart.length) return;
+      if (!/^\d{10,15}$/.test(WHATSAPP_NUMBER)) {
+        alert("The shop owner must add a valid WhatsApp number to the website before checkout can work.");
+        return;
+      }
+      const name = document.getElementById("customer-name").value.trim();
+      const phone = document.getElementById("customer-phone").value.trim();
+      const address = document.getElementById("customer-address").value.trim();
+      if (!name || !phone || !address) {
+        alert("Please fill in your name, phone number and delivery address.");
+        return;
+      }
+      const lines = cart.map(item => `- ${item.name}, size ${item.size}: ${money(price)}`);
+      const message = [
+        "Hello RIFTR, I would like to enquire about this order.",
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `Delivery address: ${address}`,
+        ...lines,
+        `Total before delivery: ${money(cart.length * price)}`,
+        "Please confirm availability, delivery charges and payment instructions."
+      ].join("\n");
+      window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message), "_blank");
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderProducts();
+    renderCart();
+  </script>
+</body>
+</html>
